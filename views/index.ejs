@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.io App</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <h1>Welcome to the Home Page</h1>
+    <button id="generate">Generate Random Number</button>
+    <p id="randomNumber">Random Number: </p>
+
+    <script>
+        const socket = io();
+
+        document.getElementById('generate').addEventListener('click', () => {
+            socket.emit('generateRandom');
+        });
+
+        socket.on('randomNumber', (number) => {
+            document.getElementById('randomNumber').textContent = `Random Number: ${number}`;
+        });
+    </script>
+</body>
+</html>
